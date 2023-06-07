@@ -6,11 +6,11 @@ f = open("blackoutbot.log","a+")
 
 #Credentials
 reddit = praw.Reddit(
-	client_id='',
-	client_secret='',
-	password='',
+	client_id='',          # From the app prefs page on reddit
+	client_secret='',      # From the app prefs page on reddit
+	password='',           # Password for account
 	user_agent='blackout',
-	username=''
+	username=''            # Username to perform action as - must be a moderator
 )
 
 from variables import subreddits
