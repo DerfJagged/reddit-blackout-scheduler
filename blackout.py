@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-# post flair comment sticky
-
 import praw
 from praw.exceptions import APIException
 
@@ -18,17 +16,12 @@ reddit = praw.Reddit(
 from variables import subreddits
 from variables import description
 from variables import posts
-from variables import blackout_date
-from variables import blackout_end_date
+
 ###############################################################################
 ###############################################################################
 ###############################################################################
 
-def submitPost(sub, title, text, link, image, video, parent, flairid, flairtext, collectionid, sort, commenttext, date, spoiler, nsfw, lock, contest, dontnotify, distinguish, sticky, lockcomment, distinguishcomment, stickycomment, wait):
-	currentDate = str(datetime.datetime.utcnow().month) + "," + str(datetime.datetime.utcnow().day)
-	if date != currentDate:
-		f.write("\n\ntoday is "+ currentDate+ "  --  post is scheduled for "+date)
-		return 1
+def submitPost(sub, title, text, link, image, video, parent, flairid, flairtext, collectionid, sort, commenttext, spoiler, nsfw, lock, contest, dontnotify, distinguish, sticky, lockcomment, distinguishcomment, stickycomment, wait):
 	if parent == None:
 		try:
 			if image == None and video == None:
@@ -101,49 +94,51 @@ def submitPost(sub, title, text, link, image, video, parent, flairid, flairtext,
 		f.write("\n\tError attributing comment. (Are you a moderator?) -- "+str(e))
 	return 0
 
-def isdate(futureTime):
-	currentTime = str(datetime.datetime.utcnow().month) + "," + str(datetime.datetime.utcnow().day)
-	return futureTime == currentTime
-
 def tolink(permalink):
 	return "https://reddit.com" + permalink
 
-def toggle_blackout(subreddit):
-	currentDate = str(datetime.datetime.utcnow().month) + "," + str(datetime.datetime.utcnow().day)
+def blackout(subreddit):
 	if subreddit.mod.settings["subreddit_type"] != 'private':
-		if currentDate != blackout_date:
-			f.write("\n\ntoday is "+ currentDate+ "  --  blackout is scheduled for "+blackout_date)
-			return 1
 		new_settings = {
 		'subreddit_type': 'private',
 		'public_description': '/r/' + subreddit + description
 		}
 		subreddit.mod.update(**new_settings)
-	else:
-		if currentDate != blackout_end_date:
-			f.write("\n\ntoday is "+ currentDate+ "  --  blackout end is scheduled for "+blackout_end_date)
-			return 1
+		f.write(subreddit+" blacked started")
+	
+def end_blackout(subreddit):
+	if subreddit.mod.settings["subreddit_type"] == 'private':
 		new_settings = {
 		'subreddit_type': 'public',
 		'public_description': '/r/' + subreddit
 		}
         	subreddit.mod.update(**new_settings)
+		f.write(subreddit+" blackout ended")
 
 #Main
 if __name__ == "__main__":
 	f.write("\n---------------------\nStarted")
-	for post in posts:	
-		postspecs = {"sub": "test", "title": "test", "text": "", "link": None, "image": None, "video": None, "parent": None, "flairid": None, "flairtext": None, "collectionid": None, "sort": None, "commenttext": None, "date": "7,23", "spoiler": False, "nsfw": False, "lock": False, "contest": False, "dontnotify": False, "distinguish": False, "sticky": False, "lockcomment": False, "distinguishcomment": False, "stickycomment": False, "wait": False}
-		postspecs.update(post)
-		if postspecs["link"] != None:
-			postspecs["text"] = None
-		err = submitPost(sub=postspecs["sub"], title=postspecs["title"], text=postspecs["text"], link=postspecs["link"], image=postspecs["image"], video=postspecs["video"], parent=postspecs["parent"], flairid=postspecs["flairid"], flairtext=postspecs["flairtext"], collectionid=postspecs["collectionid"], sort=postspecs["sort"], commenttext=postspecs["commenttext"], date=postspecs["date"], spoiler=postspecs["spoiler"], nsfw=postspecs["nsfw"], lock=postspecs["lock"], contest=postspecs["contest"], dontnotify=postspecs["dontnotify"], distinguish=postspecs["distinguish"], sticky=postspecs["sticky"], lockcomment=postspecs["lockcomment"], distinguishcomment=postspecs["distinguishcomment"], stickycomment=postspecs["stickycomment"], wait=postspecs["wait"])
-		if err == 5:
-			submitPost(sub=postspecs["sub"], title=postspecs["title"], text=postspecs["text"], link=postspecs["link"], image=postspecs["image"], video=postspecs["video"], parent=postspecs["parent"], flairid=postspecs["flairid"], flairtext=postspecs["flairtext"], collectionid=postspecs["collectionid"], sort=postspecs["sort"], commenttext=postspecs["commenttext"], date=postspecs["date"], spoiler=postspecs["spoiler"], nsfw=postspecs["nsfw"], lock=postspecs["lock"], contest=postspecs["contest"], dontnotify=postspecs["dontnotify"], distinguish=postspecs["distinguish"], sticky=postspecs["sticky"], lockcomment=postspecs["lockcomment"], distinguishcomment=postspecs["distinguishcomment"], stickycomment=postspecs["stickycomment"], wait=postspecs["wait"])
+	f.write(subreddits)
+	print("Targeted subreddits: "+subreddits+"\n")
+	response = input("Enter 'P' to post announcement\nEnter 'S' to start blackout (set subreddits to private).\nEnter 'E' to end blackout (set subreddits to public): ")
 	
-	for i in range(len(subreddits)):
-        	subreddit = reddit.subreddit(subreddits[i])
-		toggle_blackout(subreddit)
+	if (response == 'P'):
+		for post in posts:	
+			postspecs = {"sub": "test", "title": "test", "text": "", "link": None, "image": None, "video": None, "parent": None, "flairid": None, "flairtext": None, "collectionid": None, "sort": None, "commenttext": None, "spoiler": False, "nsfw": False, "lock": False, "contest": False, "dontnotify": False, "distinguish": False, "sticky": False, "lockcomment": False, "distinguishcomment": False, "stickycomment": False, "wait": False}
+			postspecs.update(post)
+			if postspecs["link"] != None:
+				postspecs["text"] = None
+			err = submitPost(sub=postspecs["sub"], title=postspecs["title"], text=postspecs["text"], link=postspecs["link"], image=postspecs["image"], video=postspecs["video"], parent=postspecs["parent"], flairid=postspecs["flairid"], flairtext=postspecs["flairtext"], collectionid=postspecs["collectionid"], sort=postspecs["sort"], commenttext=postspecs["commenttext"], spoiler=postspecs["spoiler"], nsfw=postspecs["nsfw"], lock=postspecs["lock"], contest=postspecs["contest"], dontnotify=postspecs["dontnotify"], distinguish=postspecs["distinguish"], sticky=postspecs["sticky"], lockcomment=postspecs["lockcomment"], distinguishcomment=postspecs["distinguishcomment"], stickycomment=postspecs["stickycomment"], wait=postspecs["wait"])
+			if err == 5:
+				submitPost(sub=postspecs["sub"], title=postspecs["title"], text=postspecs["text"], link=postspecs["link"], image=postspecs["image"], video=postspecs["video"], parent=postspecs["parent"], flairid=postspecs["flairid"], flairtext=postspecs["flairtext"], collectionid=postspecs["collectionid"], sort=postspecs["sort"], commenttext=postspecs["commenttext"], spoiler=postspecs["spoiler"], nsfw=postspecs["nsfw"], lock=postspecs["lock"], contest=postspecs["contest"], dontnotify=postspecs["dontnotify"], distinguish=postspecs["distinguish"], sticky=postspecs["sticky"], lockcomment=postspecs["lockcomment"], distinguishcomment=postspecs["distinguishcomment"], stickycomment=postspecs["stickycomment"], wait=postspecs["wait"])
+	elif (response == 'S'):
+		for i in range(len(subreddits)):
+			subreddit = reddit.subreddit(subreddits[i])
+			blackout(subreddit)
+	elif (response == 'E'):
+		for i in range(len(subreddits)):
+			subreddit = reddit.subreddit(subreddits[i])
+			end_blackout(subreddit)
 	
 	f.write("\n\nFinished\n---------------------\n")
 	f.close()
