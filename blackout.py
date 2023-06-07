@@ -7,7 +7,7 @@ f = open("blackoutbot.log","a+")
 
 from variables import subreddits
 from variables import description
-from variables import posts
+from variables import post
 from variables import reddit
 
 ###############################################################################
