@@ -6,6 +6,7 @@ A Python script for sending blackout announcement posts and automatically settin
 
 - Configure variables.py to set the date for the blackout (UTC)
 - Ability to set a custom message for the posts
+- Saves previous description, sets a temporary one, and reverts back when done
 - If you are a moderator, options to sticky, distinguish, and lock the post (and its comment), and to set the suggested sort or enable contest mode.
 
 # Setup
