@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import praw
+import time
 from praw.exceptions import APIException
 
 f = open("blackoutbot.log","a+")
@@ -143,10 +144,14 @@ if __name__ == "__main__":
 				submit_post(sub=postspecs["sub"], title=postspecs["title"], text=postspecs["text"], link=postspecs["link"], image=postspecs["image"], video=postspecs["video"], parent=postspecs["parent"], flairid=postspecs["flairid"], flairtext=postspecs["flairtext"], collectionid=postspecs["collectionid"], sort=postspecs["sort"], commenttext=postspecs["commenttext"], spoiler=postspecs["spoiler"], nsfw=postspecs["nsfw"], lock=postspecs["lock"], contest=postspecs["contest"], dontnotify=postspecs["dontnotify"], distinguish=postspecs["distinguish"], sticky=postspecs["sticky"], lockcomment=postspecs["lockcomment"], distinguishcomment=postspecs["distinguishcomment"], stickycomment=postspecs["stickycomment"], wait=postspecs["wait"])
 	elif (response == 'S'):
 		for i in range(len(subreddits)):
+			if (len(subreddits) >= 30):
+				time.sleep(2) # Avoid rate limit
 			subreddit = reddit.subreddit(subreddits[i])
 			blackout(subreddit)
 	elif (response == 'E'):
 		for i in range(len(subreddits)):
+			if (len(subreddits) >= 30):
+				time.sleep(2) # Avoid rate limit
 			subreddit = reddit.subreddit(subreddits[i])
 			end_blackout(subreddit)
 	
