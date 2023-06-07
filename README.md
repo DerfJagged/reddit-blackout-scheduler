@@ -1,6 +1,6 @@
-# Reddit Blackout Scheduler
+# Subreddit Blackout Tool
 # WIP - IN TESTING, DO NOT USE
-A Python script for scheduling blackout announcement posts and automatically setting subreddits to private for the duration of a blackout. Based on [reddit-post-scheduler](https://github.com/ibid-11962/reddit-post-scheduler).
+A Python script for sending blackout announcement posts and automatically setting subreddits to private (or back to public) for a blackout. Based on [reddit-post-scheduler](https://github.com/ibid-11962/reddit-post-scheduler).
 
 # Features
 
@@ -12,9 +12,9 @@ A Python script for scheduling blackout announcement posts and automatically set
 
 Go to your [app preferences](https://www.reddit.com/prefs/apps). Click the "Create app" or "Create another app" button. Fill out the form like so:
 
-- **name:** BlackoutScheduler
+- **name:** BlackoutTool
 - **App type:** Choose the **script** option
-- **description:** A Python script for scheduling blackout announcement posts and automatically setting subreddits to private for the duration of a blackout.
+- **description:** A Python script for sending blackout announcement posts and automatically setting subreddits to private (or back to public) for a blackout.
 - **about url:** [https://github.com/ibid-11962/reddit-post-scheduler](https://github.com/DerfJagged/reddit-blackout-scheduler/)
 - **redirect url:** http://localhost:8080
 
@@ -22,7 +22,7 @@ Hit the "create app" button. Make note of the client ID and client secret.
 
 Edit the beginning of `variables.py` to include your username, password, client ID, and client secret.
 
-# Scheduling Posts
+# Using for a Blackout
 
 This app is designed to be scheduled to run on the day you wish to post an announcement and the day you'd like to toggle the subreddit to private or public.
 
