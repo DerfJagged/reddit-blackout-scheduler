@@ -123,7 +123,7 @@ def end_blackout(subreddit):
 		'disable_contributor_requests': 'True',
 		'public_description': saved_description
 		}
-        	subreddit.mod.update(**new_settings)
+		subreddit.mod.update(**new_settings)
 		f.write(subreddit+" blackout ended")
 
 #Main
