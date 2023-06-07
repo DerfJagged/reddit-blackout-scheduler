@@ -4,10 +4,9 @@ A Python script for sending blackout announcement posts and automatically settin
 
 # Features
 
-- Configure variables.py to set the date for the blackout (UTC)
 - Ability to set a custom message for the posts
 - Saves previous description, sets a temporary one, and reverts back when done
-- If you are a moderator, options to sticky, distinguish, and lock the post (and its comment), and to set the suggested sort or enable contest mode.
+- Options to sticky, distinguish, and lock the post (and its comment), and to set the suggested sort.
 
 # Setup
 
@@ -34,7 +33,6 @@ The following properties are required depending on the type of posts.
 - `date` The date you want the post to go up on. Needs to be in "M,D" format. Required for all posts and comments. 
 - `text` The body text. Required for all text posts. (but not for a title-only post)
 - `link` The url of the link. Required for all link posts.
-- `commenttext` - The text of the comment. This is required if you are making a comment, regardless of whether you are also making a post.
 
 The following properties are optional strings. (some need moderator permissions)
 
@@ -44,15 +42,10 @@ The following properties are optional strings. (some need moderator permissions)
 
 The following properties are also optional, but take booleans, not strings. These all default to False, so only include them if setting to True. Some need moderator permissions. 
 
-- `spoiler` 
-- `nsfw` 
 - `dontnotify` Disable inbox notifications
-- `contest` Enable contest mode
 - `lock` 
 - `distinguish` 
 - `sticky` 
-- `lockcomment` 
-- `distinguishcomment` 
 - `stickycomment`
 - `wait` If the ratelimit is reached, wait the ten minutes and try again.
 
