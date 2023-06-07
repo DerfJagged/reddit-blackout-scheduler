@@ -2,7 +2,7 @@
 import praw
 from praw.exceptions import APIException
 
-f= open("blackoutbot.log","a+")
+f = open("blackoutbot.log","a+")
 
 #Credentials
 reddit = praw.Reddit(
@@ -99,17 +99,23 @@ def tolink(permalink):
 
 def blackout(subreddit):
 	if subreddit.mod.settings["subreddit_type"] != 'private':
+		saved_description = open(subreddit+"saved_descriptions.log","a+")
+		saved_description.write(subreddit.mod.settings['public_description'])
+		saved_description.close()
+		
 		new_settings = {
 		'subreddit_type': 'private',
+		'disable_contributor_requests': 'True',
 		'public_description': '/r/' + subreddit + description
 		}
 		subreddit.mod.update(**new_settings)
-		f.write(subreddit+" blacked started")
+		f.write(subreddit+" blackout started")
 	
 def end_blackout(subreddit):
 	if subreddit.mod.settings["subreddit_type"] == 'private':
 		new_settings = {
 		'subreddit_type': 'public',
+		'disable_contributor_requests': 'True',
 		'public_description': '/r/' + subreddit
 		}
         	subreddit.mod.update(**new_settings)
