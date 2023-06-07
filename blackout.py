@@ -99,9 +99,9 @@ def tolink(permalink):
 
 def blackout(subreddit):
 	if subreddit.mod.settings["subreddit_type"] != 'private':
-		saved_description = open(subreddit+"saved_descriptions.log","a+")
-		saved_description.write(subreddit.mod.settings['public_description'])
-		saved_description.close()
+		description_file = open(subreddit+"_saved_description.log","a+")
+		description_file.write(subreddit.mod.settings['public_description'])
+		description_file.close()
 		
 		new_settings = {
 		'subreddit_type': 'private',
@@ -113,10 +113,14 @@ def blackout(subreddit):
 	
 def end_blackout(subreddit):
 	if subreddit.mod.settings["subreddit_type"] == 'private':
+		description_file = open(subreddit+"_saved_description.log","a+")
+		saved_description = description_file.read()
+		description_file.close()
+		
 		new_settings = {
 		'subreddit_type': 'public',
 		'disable_contributor_requests': 'True',
-		'public_description': '/r/' + subreddit
+		'public_description': saved_description
 		}
         	subreddit.mod.update(**new_settings)
 		f.write(subreddit+" blackout ended")
