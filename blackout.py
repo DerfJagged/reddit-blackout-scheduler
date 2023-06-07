@@ -125,7 +125,7 @@ if __name__ == "__main__":
 	#print("Targeted subreddits: "+subreddits+"\n")
 	response = input("Enter 'P' to post announcement\nEnter 'S' to start blackout (set subreddits to private).\nEnter 'E' to end blackout (set subreddits to public): ")
 	
-	if (response == 'p' or reponse == 'P'):
+	if (response == 'p' or response == 'P'):
 		for i in range(len(subreddits)):
 			postspecs = {"sub": "test", "title": "test", "text": "", "link": None, "image": None, "video": None, "parent": None, "flairid": None, "flairtext": None, "collectionid": None, "sort": None, "commenttext": None, "spoiler": False, "nsfw": False, "lock": False, "contest": False, "dontnotify": False, "distinguish": False, "sticky": False, "lockcomment": False, "distinguishcomment": False, "stickycomment": False, "wait": False}
 			postspecs.update(post)
