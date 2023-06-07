@@ -8,3 +8,11 @@ posts = [
   "distinguish": True
 }
 ]
+#Credentials
+reddit = praw.Reddit(
+	client_id='',          # From the app prefs page on reddit
+	client_secret='',      # From the app prefs page on reddit
+	password='',           # Password for account
+	user_agent='blackout',
+	username=''            # Username to perform action as - must be a moderator
+)
