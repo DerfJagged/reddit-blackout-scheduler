@@ -1,7 +1,7 @@
 # Subreddit Blackout Tool
 A Python script for sending blackout announcement posts and automatically setting subreddits to private (or back to public) for a blackout. Based on [reddit-post-scheduler by ibid-11962](https://github.com/ibid-11962/reddit-post-scheduler).
 
-# Features
+## Features
 This app is designed to be run manually. 
 
 - Takes in a list of subreddits specified in `variables.py`
@@ -10,9 +10,9 @@ This app is designed to be run manually.
 - Ability to set a custom message for the posts
 - Options to sticky, distinguish, and lock the post (and its comment), and to set the suggested sort.
 
-# Usage
+## Usage
 
-## Setting up Reddit API Access
+### Setting up Reddit API Access
 
 Go to your [app preferences](https://www.reddit.com/prefs/apps). Click the "Create app" or "Create another app" button. Fill out the form like so:
 
@@ -22,17 +22,17 @@ Go to your [app preferences](https://www.reddit.com/prefs/apps). Click the "Crea
 - **about url:** [https://github.com/DerfJagged/subreddit-blackout-tool/](https://github.com/DerfJagged/subreddit-blackout-tool/)
 - **redirect url:** http://localhost:8080
 
-Hit the "create app" button. Make note of the client ID and client secret.
+Hit the "create app" button. Make note of the client ID (under "personal use script") and client secret ("secret").
+Edit the beginning of `variables.py` to include your username, password, client ID, and client secret. Optionally, set up another account and make it a developer and a moderator of the desired subreddits if you don't want to use your own account.
 
-Edit the beginning of `variables.py` to include your username, password, client ID, and client secret.
-
-## Configuring
+### Configuring
 
 Edit `variables.py` and change as necessary.
 
 The following properties are required depending on the type of posts.
 
-- `text` The body text. Required for all text posts. (but not for a title-only post)
+- `title` Title of the post. Your subreddit name will be added to the front of it.
+- `text` The body text. Required for all text posts (but not for a link-only post).
 - `link` The url of the link. Required for all link posts.
 
 The following properties are optional strings.
