@@ -32,27 +32,24 @@ Edit the beginning of `variables.py` to include your username, password, client 
 
 ### Configuring
 
-Edit `variables.py` and change as necessary.
+Edit `variables.py` and change as necessary. From a fresh copy, the only thing you MUST change is the subreddits being targeted.
 
-The following properties are required depending on the type of posts.
+The following properties are required depending on the type of posts:
 
 - `subreddits` Subreddits to target.
 - `title` Title of the post. Your subreddit name will be added to the front of it.
 - `text` The body text. Required for all text-only posts (but not for link-only posts).
 - `link` The url of the link. Required for all link-only posts (but not for text-only posts).
 
-The following properties are optional strings.
-
-- `flairid` The uuid of the flair you want to use.
-- `flairtext` The text of the flair you want to use.
-- `collectionid` The uuid of the collection you want to post to.
-
-The following properties are also optional, but take booleans, not strings. These all default to False, so only include them if setting to True. Some need moderator permissions. 
+The following properties are optional:
 
 - `dontnotify` Disable inbox notifications.
 - `lock`  Lock post.
 - `distinguish` Distinguish post.
 - `sticky` Sticky post.
+- `flairid` The uuid of the flair you want to use (string).
+- `flairtext` The text of the flair you want to use (string).
+- `collectionid` The uuid of the collection you want to post to (string).
 
 ## Running from pythonanywhere
 
