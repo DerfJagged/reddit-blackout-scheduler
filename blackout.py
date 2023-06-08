@@ -90,23 +90,25 @@ def submit_post(sub, title, text, link, image, video, parent, flairid, flairtext
 def tolink(permalink):
 	return "https://reddit.com" + permalink
 
-def blackout(subreddit):
-	if subreddit.mod.settings["subreddit_type"] != 'private':
-		description_file = open(subreddit+"_saved_description.log","a+")
-		description_file.write(subreddit.mod.settings['public_description'])
+def blackout(subreddit_name):
+	subreddit = reddit.subreddit(subreddit_name)
+	if subreddit.mod.settings()["subreddit_type"] != 'private':
+		description_file = open(subreddit_name+"_saved_description.log","a+")
+		description_file.write(subreddit.mod.settings()['public_description'])
 		description_file.close()
 		
 		new_settings = {
 		'subreddit_type': 'private',
 		'disable_contributor_requests': 'True',
-		'public_description': '/r/' + subreddit + description
+		'public_description': '/r/' + subreddit_name + description
 		}
 		subreddit.mod.update(**new_settings)
-		f.write(subreddit+" blackout started")
+		f.write(subreddit_name+" blackout started")
 	
-def end_blackout(subreddit):
-	if subreddit.mod.settings["subreddit_type"] == 'private':
-		description_file = open(subreddit+"_saved_description.log","a+")
+def end_blackout(subreddit_name):
+	subreddit = reddit.subreddit(subreddit_name)
+	if subreddit.mod.settings()["subreddit_type"] == 'private':
+		description_file = open(subreddit_name+"_saved_description.log","a+")
 		saved_description = description_file.read()
 		description_file.close()
 		
@@ -116,7 +118,7 @@ def end_blackout(subreddit):
 		'public_description': saved_description
 		}
 		subreddit.mod.update(**new_settings)
-		f.write(subreddit+" blackout ended")
+		f.write(subreddit_name+" blackout ended")
 
 #Main
 if __name__ == "__main__":
@@ -140,14 +142,12 @@ if __name__ == "__main__":
 		for i in range(len(subreddits)):
 			if (len(subreddits) >= 30):
 				time.sleep(2) # Avoid rate limit
-			subreddit = reddit.subreddit(subreddits[i])
-			blackout(subreddit)
+			blackout(subreddits[i])
 	elif (response == 'e' or response == 'E'):
 		for i in range(len(subreddits)):
 			if (len(subreddits) >= 30):
 				time.sleep(2) # Avoid rate limit
-			subreddit = reddit.subreddit(subreddits[i])
-			end_blackout(subreddit)
+			end_blackout(subreddits[i])
 	else:
 		print("Invalid response")
 	
