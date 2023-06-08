@@ -71,6 +71,7 @@ def submit_post(sub, title, text, link, image, video, parent, flairid, flairtext
 	try:
 		comment = submission.reply(commenttext)
 		f.write("\n\tCommented --  "+ tolink(comment.permalink))
+		print("Announcement posted!")
 	except Exception as e:
 		f.write("\n\tError posting comment -- "+str(e))
 	try:
@@ -104,6 +105,7 @@ def blackout(subreddit_name):
 		}
 		subreddit.mod.update(**new_settings)
 		f.write("\n"+subreddit_name+" blackout started")
+		print("Blackout started, thanks for participating!")
 	
 def end_blackout(subreddit_name):
 	subreddit = reddit.subreddit(subreddit_name)
@@ -119,11 +121,12 @@ def end_blackout(subreddit_name):
 		}
 		subreddit.mod.update(**new_settings)
 		f.write("\n"+subreddit_name+" blackout ended")
+		print("Blackout ended, thanks for participating!")
 
 #Main
 if __name__ == "__main__":
 	f.write("\n---------------------\nStarted")
-	response = input("Enter 'P' to post announcement\nEnter 'S' to start blackout (set subreddits to private).\nEnter 'E' to end blackout (set subreddits to public): ")
+	response = input("Enter 'P' to post announcement\nEnter 'S' to start blackout (set subreddits to private)\nEnter 'E' to end blackout (set subreddits to public)\nEnter 'Q' to quit\n> ")
 	
 	if (response == 'p' or response == 'P'):
 		for i in range(len(subreddits)):
@@ -146,6 +149,8 @@ if __name__ == "__main__":
 			if (len(subreddits) >= 30):
 				time.sleep(2) # Avoid rate limit
 			end_blackout(subreddits[i])
+	elif (response == 'q' or response == "Q"):
+		print("Quitting")
 	else:
 		print("Invalid response")
 	
