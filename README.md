@@ -62,4 +62,8 @@ If you do not have a server to run the script on, you can use pythonanywhere to 
 - Type in `python3 -m pip install praw -U --user`.
 - Type in `python3 blackout.py` to run the script.
 
+### Troubleshooting
+
+Announcement posts were removed: Approve them manually. This is likely the reddit spam filter taking it down because of too much action or a new account.
+
 *Disclaimer: I created this tool for myself because I moderate 100+ subreddits and I'm lazy. I am not liable if something goes wrong. Protest responsibly!*
