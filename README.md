@@ -1,7 +1,7 @@
 # Subreddit Blackout Tool
 A Python script for sending blackout announcement posts and setting subreddits to private (or back to public) for a blackout. Useful if you moderate many subreddits.
 
-Based on [reddit-post-scheduler by ibid-11962](https://github.com/ibid-11962/reddit-post-scheduler).
+Based on [reddit-post-scheduler by ibid-11962](https://github.com/ibid-11962/reddit-post-scheduler) and [PotRoastPotato's comment](https://www.reddit.com/r/ModCoord/comments/142rzna/a_bot_to_make_your_subreddit_private/jn7p4cc/).
 
 ## Features
 This app is designed to be run manually. 
