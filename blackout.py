@@ -56,6 +56,7 @@ def submit_post(sub, title, text, link, image, video, parent, flairid, flairtext
 			if sort != None:
 				submission.mod.suggested_sort(sort)
 				f.write("\nSet suggested sort to "+sort)
+			print(sub+" - announcement posted!")
 		except Exception as e:
 			f.write("\n\nError attributing submission. (Are you a moderator?) -- "+str(e))
 	else:
@@ -71,7 +72,6 @@ def submit_post(sub, title, text, link, image, video, parent, flairid, flairtext
 	try:
 		comment = submission.reply(commenttext)
 		f.write("\n\tCommented --  "+ tolink(comment.permalink))
-		print("Announcement posted!")
 	except Exception as e:
 		f.write("\n\tError posting comment -- "+str(e))
 	try:
@@ -105,7 +105,7 @@ def blackout(subreddit_name):
 		}
 		subreddit.mod.update(**new_settings)
 		f.write("\n"+subreddit_name+" blackout started")
-		print("Blackout started, thanks for participating!")
+		print(subreddit_name+" blackout started")
 	
 def end_blackout(subreddit_name):
 	subreddit = reddit.subreddit(subreddit_name)
@@ -121,14 +121,15 @@ def end_blackout(subreddit_name):
 		}
 		subreddit.mod.update(**new_settings)
 		f.write("\n"+subreddit_name+" blackout ended")
-		print("Blackout ended, thanks for participating!")
+		print(subreddit_name+" blackout ended")
 
 #Main
 if __name__ == "__main__":
 	f.write("\n---------------------\nStarted")
-	response = input("Enter 'P' to post announcement\nEnter 'S' to start blackout (set subreddits to private)\nEnter 'E' to end blackout (set subreddits to public)\nEnter 'Q' to quit\n> ")
+	response = input("\n== Subreddit Blackout Tool ==\n\nEnter 'P' to post announcement\nEnter 'S' to start blackout (set subreddits to private)\nEnter 'E' to end blackout (set subreddits to public)\nEnter 'Q' to quit\n> ")
 	
 	if (response == 'p' or response == 'P'):
+		print("")
 		for i in range(len(subreddits)):
 			postspecs = {"sub": "test", "title": "test", "text": "", "link": None, "image": None, "video": None, "parent": None, "flairid": None, "flairtext": None, "collectionid": None, "sort": None, "commenttext": None, "spoiler": False, "nsfw": False, "lock": False, "contest": False, "dontnotify": False, "distinguish": False, "sticky": False, "lockcomment": False, "distinguishcomment": False, "stickycomment": False, "wait": False}
 			postspecs.update(post)
@@ -140,19 +141,23 @@ if __name__ == "__main__":
 			if err == 5:
 				submit_post(sub=postspecs["sub"], title=postspecs["title"], text=postspecs["text"], link=postspecs["link"], image=postspecs["image"], video=postspecs["video"], parent=postspecs["parent"], flairid=postspecs["flairid"], flairtext=postspecs["flairtext"], collectionid=postspecs["collectionid"], sort=postspecs["sort"], commenttext=postspecs["commenttext"], spoiler=postspecs["spoiler"], nsfw=postspecs["nsfw"], lock=postspecs["lock"], contest=postspecs["contest"], dontnotify=postspecs["dontnotify"], distinguish=postspecs["distinguish"], sticky=postspecs["sticky"], lockcomment=postspecs["lockcomment"], distinguishcomment=postspecs["distinguishcomment"], stickycomment=postspecs["stickycomment"], wait=postspecs["wait"])
 	elif (response == 's' or response == 'S'):
+		print("")
 		for i in range(len(subreddits)):
 			if (len(subreddits) >= 30):
 				time.sleep(2) # Avoid rate limit
 			blackout(subreddits[i])
+		print("Blackout started, thanks for participating!")
 	elif (response == 'e' or response == 'E'):
+		print("")
 		for i in range(len(subreddits)):
 			if (len(subreddits) >= 30):
 				time.sleep(2) # Avoid rate limit
 			end_blackout(subreddits[i])
+		print("Blackout ended, thanks for participating!")
 	elif (response == 'q' or response == "Q"):
-		print("Quitting")
+		print("\nQuitting")
 	else:
-		print("Invalid response")
+		print("\nInvalid response")
 	
 	f.write("\n\nFinished\n---------------------\n")
 	f.close()
