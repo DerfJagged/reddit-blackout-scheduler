@@ -28,11 +28,10 @@ Go to your [app preferences](https://www.reddit.com/prefs/apps). Click the "Crea
 - **redirect url:** http://localhost:8080
 
 Hit the "create app" button. Make note of the client ID (under "personal use script") and client secret ("secret").
-Edit the beginning of `variables.py` to include your username, password, client ID, and client secret. Optionally, set up another account and make it a developer and a moderator of the desired subreddits if you don't want to use your own account - though it runs the risk of the reddit site filter removing posts from new accounts.
 
 ### Configuring
 
-Edit `variables.py` and change as necessary. From a fresh copy, the only thing you MUST change is the subreddits being targeted.
+Edit `variables.py` to include your username, password, client ID, client secret, and subreddits to target. Optionally, set up another account and make it a developer and a moderator of the desired subreddits if you don't want to use your own account - though it runs the risk of the reddit site filter removing posts from new accounts. From a fresh copy, the only thing you MUST change is the subreddits being targeted.
 
 The following properties are required depending on the type of posts:
 
