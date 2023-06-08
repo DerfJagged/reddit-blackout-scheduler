@@ -61,3 +61,5 @@ If you do not have a server to run the script on, you can use pythonanywhere to 
 - Click on "Open Bash console here" and wait for the console to finish initilizing.
 - Type in `python3 -m pip install praw -U --user`.
 - Type in `python3 blackout.py` to run the script.
+
+*Disclaimer: I created this tool for myself because I moderate 100+ subreddits and I'm lazy. I am not liable if something goes wrong. Protest responsibly!*
