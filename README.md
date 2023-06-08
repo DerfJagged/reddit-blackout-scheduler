@@ -10,10 +10,6 @@ Based on [reddit-post-scheduler by ibid-11962](https://github.com/ibid-11962/red
 This app is designed to be run manually. 
 
 - Takes in a list of subreddits specified in `variables.py`.
-- Asks you if you want to:
-    - Post an announcement to the subreddits.
-    - If you want to make the subreddits private (start blackout).
-    - If you want to make the subreddits public (end blackout).
 - Saves previous description, sets a temporary one, and reverts back when done.
 - Ability to set a custom message for the posts.
 - Options to sticky, distinguish, and lock the post (and its comment), and to set the suggested sort.
