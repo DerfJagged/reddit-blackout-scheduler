@@ -94,7 +94,7 @@ def blackout(subreddit_name):
 	subreddit = reddit.subreddit(subreddit_name)
 	if subreddit.mod.settings()["subreddit_type"] != 'private':
 		description_file = open(subreddit_name+"_saved_description.log","a+")
-		description_file.write(subreddit.mod.settings()['public_description'])
+		description_file.write("\n"+subreddit.mod.settings()['public_description'])
 		description_file.close()
 		
 		new_settings = {
@@ -103,7 +103,7 @@ def blackout(subreddit_name):
 		'public_description': '/r/' + subreddit_name + description
 		}
 		subreddit.mod.update(**new_settings)
-		f.write(subreddit_name+" blackout started")
+		f.write("\n"+subreddit_name+" blackout started")
 	
 def end_blackout(subreddit_name):
 	subreddit = reddit.subreddit(subreddit_name)
@@ -118,13 +118,11 @@ def end_blackout(subreddit_name):
 		'public_description': saved_description
 		}
 		subreddit.mod.update(**new_settings)
-		f.write(subreddit_name+" blackout ended")
+		f.write("\n"+subreddit_name+" blackout ended")
 
 #Main
 if __name__ == "__main__":
 	f.write("\n---------------------\nStarted")
-	#f.write(subreddits)
-	#print("Targeted subreddits: "+subreddits+"\n")
 	response = input("Enter 'P' to post announcement\nEnter 'S' to start blackout (set subreddits to private).\nEnter 'E' to end blackout (set subreddits to public): ")
 	
 	if (response == 'p' or response == 'P'):
