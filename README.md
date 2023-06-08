@@ -34,9 +34,10 @@ Edit `variables.py` and change as necessary.
 
 The following properties are required depending on the type of posts.
 
+- `subreddits` Subreddits to target.
 - `title` Title of the post. Your subreddit name will be added to the front of it.
-- `text` The body text. Required for all text posts (but not for a link-only post).
-- `link` The url of the link. Required for all link posts.
+- `text` The body text. Required for all text-only posts (but not for link-only posts).
+- `link` The url of the link. Required for all link-only posts (but not for text-only posts).
 
 The following properties are optional strings.
 
