@@ -4,10 +4,13 @@ A Python script for sending blackout announcement posts and automatically settin
 ## Features
 This app is designed to be run manually. 
 
-- Takes in a list of subreddits specified in `variables.py`
-- Asks you if you want to post an announcement to the subreddits, if you want to make them private (start blackout), or make them public (end blackout).
-- Saves previous description, sets a temporary one, and reverts back when done
-- Ability to set a custom message for the posts
+- Takes in a list of subreddits specified in `variables.py`.
+- Asks you if you want to:
+    - Post an announcement to the subreddits.
+    - If you want to make the subreddits private (start blackout).
+    - If you want to make the subreddits public (end blackout).
+- Saves previous description, sets a temporary one, and reverts back when done.
+- Ability to set a custom message for the posts.
 - Options to sticky, distinguish, and lock the post (and its comment), and to set the suggested sort.
 
 ## Usage
@@ -43,17 +46,17 @@ The following properties are optional strings.
 
 The following properties are also optional, but take booleans, not strings. These all default to False, so only include them if setting to True. Some need moderator permissions. 
 
-- `dontnotify` Disable inbox notifications
-- `lock` 
-- `distinguish` 
-- `sticky`
+- `dontnotify` Disable inbox notifications.
+- `lock`  Lock post.
+- `distinguish` Distinguish post.
+- `sticky` Sticky post.
 
 ## Running from pythonanywhere
 
 If you do not have a server to run the script on, you can use pythonanywhere to run it for free.
 
 - Make an account at https://www.pythonanywhere.com
-- Naigate to the "Files" page 
+- Naigate to the "Files" page.
 - Click "Upload a File", and upload `blackout.py` and `variables.py`.
 - Click on "Open Bash console here" and wait for the console to finish initilizing.
 - Type in `python3 -m pip install praw -U --user`.
