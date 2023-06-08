@@ -125,11 +125,12 @@ if __name__ == "__main__":
 	#print("Targeted subreddits: "+subreddits+"\n")
 	response = input("Enter 'P' to post announcement\nEnter 'S' to start blackout (set subreddits to private).\nEnter 'E' to end blackout (set subreddits to public): ")
 	
-	if (response == 'p' or response == 'P'):
+	if (response == 'p' or reponse == 'P'):
 		for i in range(len(subreddits)):
 			postspecs = {"sub": "test", "title": "test", "text": "", "link": None, "image": None, "video": None, "parent": None, "flairid": None, "flairtext": None, "collectionid": None, "sort": None, "commenttext": None, "spoiler": False, "nsfw": False, "lock": False, "contest": False, "dontnotify": False, "distinguish": False, "sticky": False, "lockcomment": False, "distinguishcomment": False, "stickycomment": False, "wait": False}
 			postspecs.update(post)
 			postspecs["sub"] = subreddits[i]
+			postspecs["title"] = "/r/"+subreddits[i]+postspecs["title"]
 			if postspecs["link"] != None:
 				postspecs["text"] = None
 			err = submit_post(sub=postspecs["sub"], title=postspecs["title"], text=postspecs["text"], link=postspecs["link"], image=postspecs["image"], video=postspecs["video"], parent=postspecs["parent"], flairid=postspecs["flairid"], flairtext=postspecs["flairtext"], collectionid=postspecs["collectionid"], sort=postspecs["sort"], commenttext=postspecs["commenttext"], spoiler=postspecs["spoiler"], nsfw=postspecs["nsfw"], lock=postspecs["lock"], contest=postspecs["contest"], dontnotify=postspecs["dontnotify"], distinguish=postspecs["distinguish"], sticky=postspecs["sticky"], lockcomment=postspecs["lockcomment"], distinguishcomment=postspecs["distinguishcomment"], stickycomment=postspecs["stickycomment"], wait=postspecs["wait"])
