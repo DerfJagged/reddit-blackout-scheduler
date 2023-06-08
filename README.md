@@ -61,9 +61,7 @@ If you do not have a server to run the script on, you can use pythonanywhere to 
 - Type in `python3 blackout.py` to run the script.
 - OPTIONAL: Go back to Dashboard page, click "Tasks" button, and schedule a task to run the script at a certain time (UTC) and automatically execute a command with the following:
     - python3 /home/Derf/blackout.py p
-      OR
     - python3 /home/Derf/blackout.py s
-      OR
     - python3 /home/Derf/blackout.py e
 
 ### Troubleshooting
