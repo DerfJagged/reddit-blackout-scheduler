@@ -3,7 +3,7 @@ import praw
 import time
 from praw.exceptions import APIException
 
-f = open("blackoutbot.log","a+")
+f = open("subreddit-blackout-tool.log","a+")
 
 from variables import subreddits
 from variables import description
@@ -108,7 +108,7 @@ def blackout(subreddit_name):
 def end_blackout(subreddit_name):
 	subreddit = reddit.subreddit(subreddit_name)
 	if subreddit.mod.settings()["subreddit_type"] == 'private':
-		description_file = open(subreddit_name+"_saved_description.log","a+")
+		description_file = open(subreddit_name+"_saved_description.log","r")
 		saved_description = description_file.read()
 		description_file.close()
 		
