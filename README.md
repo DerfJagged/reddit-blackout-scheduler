@@ -3,6 +3,9 @@ A Python script for sending blackout announcement posts and setting subreddits t
 
 Based on [reddit-post-scheduler by ibid-11962](https://github.com/ibid-11962/reddit-post-scheduler) and [PotRoastPotato's comment](https://www.reddit.com/r/ModCoord/comments/142rzna/a_bot_to_make_your_subreddit_private/jn7p4cc/).
 
+
+![image](https://github.com/DerfJagged/subreddit-blackout-tool/assets/24844708/9fa40265-5634-4e1c-9f8e-35f6df30e344)
+
 ## Features
 This app is designed to be run manually. 
 
