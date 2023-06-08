@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import sys
 import praw
 import time
 from praw.exceptions import APIException
@@ -126,7 +127,11 @@ def end_blackout(subreddit_name):
 #Main
 if __name__ == "__main__":
 	f.write("\n---------------------\nStarted")
-	response = input("\n== Subreddit Blackout Tool ==\n\nEnter 'P' to post announcement\nEnter 'S' to start blackout (set subreddits to private)\nEnter 'E' to end blackout (set subreddits to public)\nEnter 'Q' to quit\n> ")
+	if len(sys.argv) > 1:
+		response = str(sys.argv[1])
+		
+	if (response is None):
+		response = input("\n== Subreddit Blackout Tool ==\n\nEnter 'P' to post announcement\nEnter 'S' to start blackout (set subreddits to private)\nEnter 'E' to end blackout (set subreddits to public)\nEnter 'Q' to quit\n> ")
 	
 	if (response == 'p' or response == 'P'):
 		print("")
