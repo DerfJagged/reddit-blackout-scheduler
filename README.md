@@ -12,7 +12,7 @@ This app is designed to be run manually or scheduled using pythonanywhere (instr
 - Takes in a list of subreddits specified in `variables.py`.
 - Saves previous description, sets a temporary one, and reverts back when done.
 - Ability to set a custom message for the posts.
-- Options to sticky, distinguish, and lock the post (and its comment), and to set the suggested sort.
+- Options to sticky, distinguish, and lock the post.
 
 ## Usage
 
