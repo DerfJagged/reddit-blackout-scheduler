@@ -7,7 +7,7 @@ Based on [reddit-post-scheduler by ibid-11962](https://github.com/ibid-11962/red
 ![image](https://github.com/DerfJagged/subreddit-blackout-tool/assets/24844708/9fa40265-5634-4e1c-9f8e-35f6df30e344)
 
 ## Features
-This app is designed to be run manually. 
+This app is designed to be run manually or scheduled using pythonanywhere (instructions below) or a cronjob.
 
 - Takes in a list of subreddits specified in `variables.py`.
 - Saves previous description, sets a temporary one, and reverts back when done.
@@ -59,6 +59,12 @@ If you do not have a server to run the script on, you can use pythonanywhere to 
 - Click on "Open Bash console here" and wait for the console to finish initilizing.
 - Type in `python3 -m pip install praw -U --user`.
 - Type in `python3 blackout.py` to run the script.
+- OPTIONAL: Go back to Dashboard page, click "Tasks" button, and schedule a task to run the script at a certain time (UTC) and automatically execute a command with the following:
+      python3 /home/Derf/blackout.py p
+      OR
+      python3 /home/Derf/blackout.py s
+      OR
+      python3 /home/Derf/blackout.py e
 
 ### Troubleshooting
 
