@@ -127,6 +127,7 @@ def end_blackout(subreddit_name):
 #Main
 if __name__ == "__main__":
 	f.write("\n---------------------\nStarted")
+	response = None
 	if len(sys.argv) > 1:
 		response = str(sys.argv[1])
 		
