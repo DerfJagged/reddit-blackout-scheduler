@@ -59,7 +59,8 @@ If you do not have a server to run the script on, you can use pythonanywhere to 
 - Click on "Open Bash console here" and wait for the console to finish initilizing.
 - Type in `python3 -m pip install praw -U --user`.
 - Type in `python3 blackout.py` to run the script.
-- OPTIONAL: Go back to Dashboard page, click "Tasks" button, and schedule a task to run the script at a certain time (UTC) and automatically execute a command with the following:
+- OPTIONAL: Go back to Dashboard page, click "Tasks" button, and schedule a task the night before to run the script at a certain time (UTC) and automatically execute one of the following commands. Note that this command will keep running daily until the task is deleted.
+
     - python3 /home/Derf/blackout.py p
     - python3 /home/Derf/blackout.py s
     - python3 /home/Derf/blackout.py e
